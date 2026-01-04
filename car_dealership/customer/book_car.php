@@ -2,7 +2,7 @@
 session_start();
 include("../includes/db.php");
 
-$car_id = $_GET['id'];
+$car_id = $_GET['id'];      
 $user_email = $_SESSION['user'];
 
 $user_query = "SELECT id FROM users WHERE email='$user_email'";
@@ -18,3 +18,4 @@ mysqli_query($conn, $booking_query);
 
 header("Location: ../payment/payment.php");
 ?>
+
