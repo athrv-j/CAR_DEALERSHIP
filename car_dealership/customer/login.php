@@ -11,7 +11,7 @@ if (isset($_POST['login'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $_SESSION['user'] = $email;
-        header("Location: cars.php");
+        header("Location: dashboard.php");
     } else {
         echo "Invalid Login";
     }

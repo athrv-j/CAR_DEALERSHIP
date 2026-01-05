@@ -31,11 +31,12 @@ while ($row = mysqli_fetch_assoc($result)) {
             <div class="card-body text-center">
                 <h5 class="card-title"><?php echo $row['car_name']; ?></h5>
                 <p class="card-text">Price: ₹<?php echo $row['price']; ?></p>
+<a href="book_car.php?id=<?php echo $row['id']; ?>" 
+   class="btn btn-primary">
+   Book Now
+</a>
 
-                <a href="book_car.php?id=<?php echo $row['id']; ?>" 
-                   class="btn btn-primary">
-                    Book Now
-                </a>
+
             </div>
         </div>
     </div>
@@ -46,6 +47,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     </div>
 </div>
+
+
 
 </body>
 </html>
