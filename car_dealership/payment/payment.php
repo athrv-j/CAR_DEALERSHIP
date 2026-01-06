@@ -1,39 +1,51 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 session_start();
 include("../includes/db.php");
 
+/* HARD DEBUG – NO REDIRECTS */
 if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
+    die("User session missing");
 }
 
-if (!isset($_GET['id'])) {
-    die("Car ID not received");
+if (!isset($_SESSION['car_id'])) {
+    die("Car ID not received in payment");
 }
 
-$car_id = (int)$_GET['id'];
-$user_email = $_SESSION['user'];
+$car_id = $_SESSION['car_id'];
 
-/* GET USER ID */
-$user_query = "SELECT id FROM users WHERE email='$user_email'";
-$user_result = mysqli_query($conn, $user_query);
+/* FETCH CAR DETAILS */
+$query = "SELECT car_name, price FROM cars WHERE id = $car_id";
+$result = mysqli_query($conn, $query);
 
-if (!$user_result || mysqli_num_rows($user_result) == 0) {
-    die("User not found");
+if (mysqli_num_rows($result) == 0) {
+    die("Car not found");
 }
 
-$user = mysqli_fetch_assoc($user_result);
-$user_id = $user['id'];
+$car = mysqli_fetch_assoc($result);
+?>
 
-/* INSERT BOOKING */
-$booking_query = "INSERT INTO bookings (user_id, car_id, booking_date)
-                  VALUES ($user_id, $car_id, CURDATE())";
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
 
-mysqli_query($conn, $booking_query);
+<div class="container mt-5">
+    <div class="card p-4 shadow text-center">
 
-/* REDIRECT */
-header("Location: ../payment/payment.php");
-exit;
+        <h3>Payment Page</h3>
+
+        <p><strong>Car:</strong> <?php echo $car['car_name']; ?></p>
+        <p><strong>Amount:</strong> ₹<?php echo number_format($car['price']); ?></p>
+
+        <button class="btn btn-success w-100">
+            Pay Now (Demo)
+        </button>
+
+    </div>
+</div>
+
+</body>
+</html>

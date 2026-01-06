@@ -85,9 +85,7 @@ $booking_count = mysqli_fetch_assoc(
             Add Service
         </a>
 
-        <a href="manage_services.php" class="btn btn-secondary mb-2 w-100">
-            Manage Services
-        </a>
+       
 
         <a href="view_bookings.php" class="btn btn-success w-100">
             View Bookings

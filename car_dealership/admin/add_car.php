@@ -28,12 +28,76 @@ if (isset($_POST['add'])) {
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Car</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #02030c, #010002);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 56px; /* space for navbar */
+        }
+
+        /* keep navbar at top */
+        nav.navbar { position: absolute; top: 0; left: 0; right: 0; }
+
+        .card {
+            border-radius: 1rem;
+            background-color: #090916; /* near-black shade */
+            color: #ffffff;
+        }
+
+        .card h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.25);
+            border-color: #764ba2;
+        }
+
+        .btn-custom {
+            background-color: #838185;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #667eea;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1rem;
+            color: white;
+        }
+
+        .login-footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* main wrapper to center the card below the navbar */
+        .main-wrapper {
+            height: calc(100vh - 56px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body> 
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-dark bg-dark">
@@ -45,33 +109,58 @@ if (isset($_POST['add'])) {
     </div>
 </nav>
 
-<form method="post" enctype="multipart/form-data">
+<div class="main-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card p-4 shadow-lg">
+          <h3 class="text-center mb-4">Add Car</h3>
+          <form method="post" enctype="multipart/form-data">
 
-    <input type="text" name="car_name" class="form-control mb-3"
-           placeholder="Car Name" required>
+     <select name="car_name" class="form-control mb-3" required>
+                <option value="">Select Car</option>
+                <option>XUV700</option>
+                <option>Defender</option>
+                <option>Fortuner</option>
+                <option>Lamborghini Huracán EVO</option>
+                <option>BMW X5</option>
+                <option>Range Rover</option>
+                <option>Mercedes-Benz GLE</option>
+                <option>Porsche 911 Turbo S</option>
+            </select>
 
-    <input type="number" name="price" class="form-control mb-3"
-           placeholder="Price (INR)" required>
+            <input type="number" name="price" class="form-control mb-3"
+                   placeholder="Price (INR)" required>
 
-    <input type="number" name="kms_driven" class="form-control mb-3"
-           placeholder="Kms Driven" required>
+            <input type="number" name="kms_driven" class="form-control mb-3"
+                   placeholder="Kms Driven" required>
 
-    <select name="fuel_type" class="form-control mb-3" required>
-        <option value="">Select Fuel Type</option>
-        <option>Petrol</option>
-        <option>Diesel</option>
-        <option>Electric</option>
-    </select>
+            <select name="fuel_type" class="form-control mb-3" required>
+                <option value="">Select Fuel Type</option>
+                <option>Petrol</option>
+                <option>Diesel</option>
+                <option>Electric</option>
+            </select>
 
-    <select name="transmission" class="form-control mb-3" required>
-        <option value="">Select Transmission</option>
-        <option>Automatic</option>
-        <option>Manual</option>
-    </select>
+            <select name="transmission" class="form-control mb-3" required>
+                <option value="">Select Transmission</option>
+                <option>Automatic</option>
+                <option>Manual</option>
+            </select>
 
-    <input type="file" name="image" class="form-control mb-3" required>
+            <input type="file" name="image" class="form-control mb-3" required>
 
-    <button name="add" class="btn btn-dark w-100">
-        Add Car
-    </button>
-</form>
+            <button name="add" class="btn btn-custom w-100">
+                Add Car
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
